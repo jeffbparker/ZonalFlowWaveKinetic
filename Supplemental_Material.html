@@ -349,7 +349,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$ \newcommand{\ybar}{\overline{y}} $
+<p>(Evaluate block to execute LaTeX definitions) 
+$ \newcommand{\ybar}{\overline{y}} $
 $ \renewcommand{\d}[2]{\frac{d #1}{d #2}} $
 $ \newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} $
 $ \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} $
@@ -369,18 +370,19 @@ $ \newcommand{\ol}[1]{\overline{#1}} $</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Calculating-the-Dispersion-Relation-for-Zonostrophic-Instability">Calculating the Dispersion Relation for Zonostrophic Instability<a class="anchor-link" href="#Calculating-the-Dispersion-Relation-for-Zonostrophic-Instability">&#182;</a></h1><p>The dispersion relation for zonostrophic instability is shown in Figure 2 in the paper.  We show how to derive the general form of the dispersion relation for zonostrophic instability, and then how to compute it numerically for a given set of parameters.  Python code is included.</p>
+<h1 id="Calculating-the-Dispersion-Relation-for-Zonostrophic-Instability">Calculating the Dispersion Relation for Zonostrophic Instability<a class="anchor-link" href="#Calculating-the-Dispersion-Relation-for-Zonostrophic-Instability">&#182;</a></h1><p>This is the supplementary material for the paper <a href="https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/dynamics-of-zonal-flows-failure-of-wave-kinetic-theory-and-new-geometrical-optics-approximations/5B51BB7D026E19E8F21801568ED6EA75">Dynamics of zonal flows: failure of wave-kinetic theory, and new geometrical optics approximations</a>.  The article may also be found on arXiv <a href="https://arxiv.org/abs/1604.06904">here</a>.</p>
+<p>The dispersion relation for zonostrophic instability is shown in Figure 2 in the paper.  We show how to derive the general form of the dispersion relation for zonostrophic instability, and then how to compute it numerically for a given set of parameters.  Python code is included.</p>
 <p>In each case, we reduce the general form of the dispersion relation to a simpler form by using a fluctuation spectrum that consists of a thin ring in wavevector space $\sim \delta(k - k_f)$ centered at $k_f$.  This reduction was first considered for CE2 by Srinivasan and Young (2012); more details can be found in Parker (Ph.D. Thesis, 2014).</p>
 <p>If this document is being read as a PDF or webpage, an interactive ipython notebook can be found <a href="https://github.com/jeffbparker/ZonalFlowWaveKinetic">here</a>, or at a <a href="https://github.com/jeffbparker/ZonalFlowWaveKinetic/raw/master/Supplemental_Material.ipynb">direct link</a> (right click, save as).  In the ipython notebook one can follow along the mathematics and run the Python code inside the notebook using the <a href="http://jupyter.org/">Jupyter</a> software.  To view it non-interactively within a browser without the Jupyter software, see  <a href="http://nbviewer.jupyter.org/github/jeffbparker/ZonalFlowWaveKinetic/blob/master/Supplemental_Material.ipynb">here</a>.</p>
 <h2 id="Coordinate-Convention">Coordinate Convention<a class="anchor-link" href="#Coordinate-Convention">&#182;</a></h2><p>This document uses the geophysical convention for coordinates.  To use the standard plasma coordinates, let $(x,y,\ybar,\b,U) \mapsto (-y, x, \ol{x}, \kappa, -U)$.</p>
-<h2 id="General-Form-for-Zonostrophic-Instability">General Form for Zonostrophic Instability<a class="anchor-link" href="#General-Form-for-Zonostrophic-Instability">&#182;</a></h2><h3 id="Asymptotic-WKE">Asymptotic WKE<a class="anchor-link" href="#Asymptotic-WKE">&#182;</a></h3><p>We start from Eq. (5).  There is a homogeneous equilibrium, independent of $\ybar$, at $\N_H(k_x,k_y) = F(k_x,k_y) / 2\b\m$, $U=0$.  Using the form
+<h2 id="General-Form-for-Zonostrophic-Instability">General Form for Zonostrophic Instability<a class="anchor-link" href="#General-Form-for-Zonostrophic-Instability">&#182;</a></h2><h3 id="Asymptotic-WKE">Asymptotic WKE<a class="anchor-link" href="#Asymptotic-WKE">&#182;</a></h3><p>We start from Eq. (3.2).  There is a homogeneous equilibrium, independent of $\ybar$, at $\N_H(k_x,k_y) = F(k_x,k_y) / 2\b\m$, $U=0$.  Using the form
   \begin{equation}
     \N = \N_H + e^{iq\ybar} e^{\l t} \N_1(k_x, k_y),
   \end{equation}
   \begin{equation}
     U = e^{iq\ybar} e^{\l t} U_1,
   \end{equation}
-we linearize Eq. (5) for perturbations about the equilibrium.  We obtain
+we linearize Eq. (3.2) for perturbations about the equilibrium.  We obtain
   \begin{equation}
     \l \N_1 = iqk_x U_1 \pd{\N_H}{k_y} - \frac{2i\b q k_x k_y}{\ol{k}^4} \N_1 - 2\m \N_1
   \end{equation}
@@ -392,7 +394,7 @@ we linearize Eq. (5) for perturbations about the equilibrium.  We obtain
     \l + \m = -q^2 \int \frac{d\v{k}}{(2\pi)^2} \frac{k_x^2 k_y}{(\l + 2\m)\ol{k}^4 + 2i\b q k_x k_y} \b \pd{\N_H}{k_y}
   \end{equation}</p>
 <p>When $q$ is large, $\l \sim q$.</p>
-<h3 id="Zonostrophic-Instability-in-CE2-GO">Zonostrophic Instability in CE2-GO<a class="anchor-link" href="#Zonostrophic-Instability-in-CE2-GO">&#182;</a></h3><p>We follow the same procedure, starting from Eq. (7).  After linearizing about the homogeneous equilibrium $W_H(k_x,k_y) = F(k_x,k_y) / 2\m$, we find
+<h3 id="Zonostrophic-Instability-in-CE2-GO">Zonostrophic Instability in CE2-GO<a class="anchor-link" href="#Zonostrophic-Instability-in-CE2-GO">&#182;</a></h3><p>We follow the same procedure, starting from Eq. (4.1).  After linearizing about the homogeneous equilibrium $W_H(k_x,k_y) = F(k_x,k_y) / 2\m$, we find
   \begin{equation}
     \l W_1 = iqk_x U_1 \pd{}{k_y} \left[ \left( 1 - \frac{q^2}{\ol{k}^2} \right) W_H \right] - \frac{2i\b q k_x k_y}{\ol{k}^4} W_1 - 2\m W_1,
   \end{equation}
@@ -403,7 +405,7 @@ we linearize Eq. (5) for perturbations about the equilibrium.  We obtain
   \begin{equation}
     \l + \m = -q^2 \int \frac{d\v{k}}{(2\pi)^2} \frac{k_x^2 k_y}{(\l + 2\m)\ol{k}^4 + 2i\b q k_x k_y} \pd{}{k_y} \left[ \left( 1 - \frac{q^2}{\ol{k}^2} \right) W_H \right]
   \end{equation}</p>
-<h3 id="Zonostrophic-Instability-in-the-WKE">Zonostrophic Instability in the WKE<a class="anchor-link" href="#Zonostrophic-Instability-in-the-WKE">&#182;</a></h3><p>We follow the same procedure, starting from Eq. (9).  We linearize about the homogeneous equilibrium $\N_H(k_x,k_y) = F(k_x,k_y) / 2\m \b$, and find</p>
+<h3 id="Zonostrophic-Instability-in-the-WKE">Zonostrophic Instability in the WKE<a class="anchor-link" href="#Zonostrophic-Instability-in-the-WKE">&#182;</a></h3><p>We follow the same procedure, starting from Eq. (4.3).  We linearize about the homogeneous equilibrium $\N_H(k_x,k_y) = F(k_x,k_y) / 2\m \b$, and find</p>
 <p>\begin{equation}
     \l \N_1 = iqk_x U_1 \left( 1 - \frac{q^2}{\ol{k}^2} \right) \pd{\N_H}{k_y} - \frac{2i\b q k_x k_y}{\ol{k}^4} \N_1 - \frac{q^2 F}{\b^2} U_1 - 2 \m \N_1,
   \end{equation}
@@ -419,7 +421,7 @@ Plugging this into the zonal flow equation yields the dispersion relation,
     \l + \m = -q^2 \int \frac{d\v{k}}{(2\pi)^2} \left[ \frac{\b k_x^2 k_y (1 - q^2/\ol{k}^2)}{(\l+2\m) \ol{k}^4 + 2i\b q k_x k_y} \pd{\N_H}{k_y} + \frac{qF}{\b} \frac{i k_x k_y}{(\l + 2\m) \ol{k}^4 + 2i\b q k_x k_y} \right]
   \end{equation}</p>
 <p>The last term here has no analog in the other models and its presence is a consequence of the invalidity of this model --- wave action is not conserved during this instability.</p>
-<h3 id="Zonostrophic-Instability-in-CE2">Zonostrophic Instability in CE2<a class="anchor-link" href="#Zonostrophic-Instability-in-CE2">&#182;</a></h3><p>The same procedure can be applied to Eq. (2) with a little more algebraic complexity.  See Srinivasan and Young (2012) or Parker (PhD Thesis, Section 3.2) for the derivation.  Using Eqs. (3.25) and (3.26) of Parker (PhD Thesis), and taking $\ol{q}^2 = q^2$ (corresponding to $L_d^{-2} = 0$ for the zonal flows) and the limit of zero viscosity $\nu=0$, the dispersion relation is
+<h3 id="Zonostrophic-Instability-in-CE2">Zonostrophic Instability in CE2<a class="anchor-link" href="#Zonostrophic-Instability-in-CE2">&#182;</a></h3><p>The same procedure can be applied to Eq. (2.3) with a little more algebraic complexity.  See Srinivasan and Young (2012) or Parker (PhD Thesis, Section 3.2) for the derivation.  Using Eqs. (3.25) and (3.26) of Parker (PhD Thesis), and taking $\ol{q}^2 = q^2$ (corresponding to $L_d^{-2} = 0$ for the zonal flows) and the limit of zero viscosity $\nu=0$, the dispersion relation is
   \begin{equation}
     \l + \m = -q \int \frac{d\v{k}}{(2\pi)^2} \frac{k_x^2 k_y}{(\l + 2\m) \ol{h}^2_1 \ol{h}^2_2 + 2i\b qk_xk_y } \left[ \left( 1 - \frac{q^2}{\ol{h}_1^2} \right) W_H(k_x, k_y + \tfrac{1}{2}q) - \left(1 - \frac{q^2}{\ol{h}_2^2} \right) W_H(k_x, k_y - \tfrac{1}{2}q) \right],
   \end{equation}</p>
